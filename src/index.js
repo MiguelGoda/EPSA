@@ -1,20 +1,32 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require('cors')
 
 const taskRoutes = require("./routes/tasks.routes");
 
+//Initializations
 const app = express();
 
-app.use(morgan("dev"));
-app.use(express.json());
 
+//Routes
 app.use(taskRoutes);
 
+//middleware
 app.use((err, req, res, next) => {
   return res.json({
     message: err.message,
   });
 });
+app.use(cors())
+app.use(morgan("dev"));
+app.use(express.json());
 
-app.listen(3000);
-console.log("server on port 4000");
+
+//setting
+app.set("port", process.env.PORT || 4000);
+
+//starting the server
+app.listen(app.get('port'), () => {
+  console.log('Server on port', app.get('port'));
+})
+
