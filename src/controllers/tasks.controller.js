@@ -25,16 +25,19 @@ const getTasks = async (req, res, next) => {
 };
 
 const createTasks = async (req, res, next) => {
-  const { title, descripcion } = req.body;
-  try {
-    const result = await pool.query(
-      "INSERT INTO tasks (title, descripcion) VALUES ($1,$2) RETURNING *",
-      [title, descripcion]
-    );
-    res.json(result.rows[0]);
-  } catch (error) {
-    next(error);
-  }
+  const tasks = req.body;
+  console.log(tasks);
+  res.send(tasks);
+  // const { title, descripcion } = req.body;
+  // try {
+  //   const result = await pool.query(
+  //     "INSERT INTO tasks (title, descripcion) VALUES ($1,$2) RETURNING *",
+  //     [title, descripcion]
+  //   );
+  //   res.json(result.rows[0]);
+  // } catch (error) {
+  //   next(error);
+  // }
 };
 
 const deleteTasks = async (req, res, next) => {

@@ -1,7 +1,9 @@
 CREATE DATABASE EPSA
 
-CREATE TABLE tasks(
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) UNIQUE,
-    descripcion VARCHAR(25)
-);
+CREATE TABLE IF NOT EXISTS public.tipo_cliente
+(
+    id_tipo_cliente integer NOT NULL DEFAULT,
+    nombre_tipo_cliente character varying(255) NOT NULL,
+    descripcion_tipo_cliente character varying(255) NOT NULL,
+    CONSTRAINT tipo_cliente_pkey PRIMARY KEY (id_tipo_cliente)
+)
